@@ -185,36 +185,32 @@
     color: var(--primary);
 }
 
-  /*my work*/
-  .slider-container {
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-}
-
-.slider {
-    display: flex;
-    align-items: center;
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 2rem;
-    transition: transform 0.5s ease;
 }
 
-.slide {
-    flex: 0 0 300px;
-    transition: all 0.4s ease;
-    transform: scale(0.8);
-    opacity: 0.6;
+.work-item {
+    text-align: center;
 }
 
-.slide img {
+.work-item img {
     width: 100%;
-    border-radius: 20px;
+    border-radius: 12px;
+    transition: 0.3s;
 }
 
-.slide.active {
-    transform: scale(1.1);
-    opacity: 1;
+.work-item img:hover {
+    transform: scale(1.05);
 }
+
+.work-item p {
+    margin-top: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}  
+
     </style>
 </head>
 <body data-theme="dark">
@@ -307,27 +303,44 @@
     <section id="mywork">
         <h2 class="section-title reveal">My Work</h2>
     
-        <div class="slider-container reveal">
-            <div class="slider" id="slider">
+        <!-- ===== COLLEGE FEST ===== -->
+        <h2 style="text-align: left;"><b>College Fest Work</b></h2><br>
     
-                <div class="slide active">
-                    <img src="images/fest_leads.jpg" alt="">
-                </div>
+        <div class="work-grid">
     
-                <div class="slide">
-                    <img src="images/build_brain.jpg" alt="">
-                </div>
+            <div class="work-item"><img src="images/fest_leads.jpg"></div>
+            <div class="work-item"><img src="images/fest_announcement.jpg"></div>
+            <div class="work-item"><img src="images/trust_walk.jpg"></div>
+            <div class="work-item"><img src="images/blind_touch.jpg"></div>
+            <div class="work-item"><img src="images/chef_battle.jpg"></div>
+            <div class="work-item"><img src="images/cse_poster.jpg"></div>
+            <div class="work-item"><img src="images/build_brain.jpg"></div>
+            <div class="work-item"><img src="images/fruit_house_banner.jpg"></div>
+            <div class="work-item"><img src="images/fruit_house_stall.jpg"></div>
+            <div class="work-item"><img src="images/raghu fest.jpg"></div>
+            <div class="work-item"><img src="images/ice_cream_stall.jpg"></div>
+            <div class="work-item"><img src="images/broucher.jpg"></div>
+            <div class="work-item"><img src="images/orange band.jpg"></div>
+            <div class="work-item"><img src="images/black band.jpg"></div>
     
-                <div class="slide">
-                    <img src="images/cse_poster.jpg" alt="">
-                </div>
-    
-                <div class="slide">
-                    <img src="images/blind_touch.jpg" alt="">
-                </div>
-    
-            </div>
         </div>
+    
+        <!-- ===== CINEMATIC POSTERS ===== -->
+        <h2 style="text-align: left; margin-top: 60px;"><b>Cinematic Posters</b></h2><br>
+    
+        <div class="work-grid">
+    
+            <div class="work-item"><img src="images/nani.jpg"></div>
+            <div class="work-item"><img src="images/rajasaab.jpg"></div>
+            <div class="work-item"><img src="images/saaho_love.jpg"></div>
+            <div class="work-item"><img src="images/saaho.jpg"></div>
+            <div class="work-item"><img src="images/surya.jpg"></div>
+            <div class="work-item"><img src="images/salaar.jpg"></div>
+            <div class="work-item"><img src="images/peddi.jpg"></div>
+            <div class="work-item"><img src="images/ene.jpg"></div>
+    
+        </div>
+    
     </section>
 
     <section id="education">
@@ -411,6 +424,7 @@ function updateSlider() {
         if (index === current) {
             slide.classList.add('active');
         }
+        
     });
 
     const slider = document.getElementById('slider');
@@ -420,14 +434,6 @@ function updateSlider() {
     const offset = current * slideWidth - (containerWidth / 2 - slideWidth / 2);
     slider.style.transform = `translateX(-${offset}px)`;
 }
-
-// click to focus
-slides.forEach((slide, index) => {
-    slide.addEventListener('click', () => {
-        current = index;
-        updateSlider();
-    });
-});
 
 // keyboard support (optional but good)
 document.addEventListener('keydown', (e) => {
@@ -439,7 +445,8 @@ document.addEventListener('keydown', (e) => {
     updateSlider();
 });
 
-updateSlider();
+
+
 
         // GitHub Repo Fetching
         /*
