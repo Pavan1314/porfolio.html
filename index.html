@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAVAN KUMAR | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0071e3;
+            --primary-hover: #0077ed;
+            --bg: #ffffff;
+            --text: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --card-bg: #f5f5f7;
+            --border: rgba(0,0,0,0.1);
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg: #000000;
+            --text: #f5f5f7;
+            --text-secondary: #86868b;
+            --card-bg: #1c1c1e;
+            --border: rgba(255,255,255,0.1);
+            --nav-bg: rgba(0, 0, 0, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            transition: var(--transition);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 10%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--text); 
+            font-size: 0.85rem; 
+            font-weight: 500; 
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { opacity: 1; }
+
+        .theme-toggle {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        /* Hero */
+        section { padding: 120px 10%; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; }
+
+        .hero { text-align: center; height: 90vh; }
+        .hero h1 { 
+            font-size: clamp(3rem, 10vw, 6rem); 
+            font-weight: 700; 
+            letter-spacing: -3px; 
+            margin-bottom: 0.5rem;
+            background: linear-gradient(180deg, var(--text) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p { font-size: 1.5rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto 2.5rem; }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(0,113,227,0.3); }
+
+        /* Content Sections */
+        .section-title { font-size: 2.8rem; margin-bottom: 3.5rem; letter-spacing: -1.5px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .card:hover { transform: translateY(-8px); border-color: var(--primary); }
+        .card h3 { margin-bottom: 0.7rem; font-size: 1.5rem; }
+        
+        .tag { 
+            display: inline-block; 
+            padding: 5px 14px; 
+            background: var(--primary); 
+            color: white; 
+            font-size: 0.65rem; 
+            border-radius: 20px; 
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .skills-container { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+        .skill-pill { 
+            padding: 10px 22px; 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            border-radius: 50px; 
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Timeline-style for Education/Work */
+        .item-meta { color: var(--primary); font-weight: 600; margin-bottom: 0.5rem; display: block; }
+        .item-duration { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; display: block; }
+
+        /* Scroll Reveal */
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1.2s cubic-bezier(0.22, 1, 0.36, 1) all; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        footer { padding: 6rem 10% 3rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-secondary); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            section { padding: 100px 5%; }
+            .section-title { font-size: 2.2rem; }
+        }
+        
+        .case-study {
+    margin-top: 5rem;
+    padding: 3rem;
+    background: var(--card-bg);
+    border-radius: 30px;
+    border: 1px solid var(--border);
+}
+
+.case-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.case-grid h4 {
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+    </style>
+</head>
+<body data-theme="dark">
+
+    <nav>
+        <div class="logo">PK.</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Work</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Connect</a></li>
+        </ul>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+    </nav>
+
+    <section class="hero">
+        <h1 class="reveal">PAVAN KUMAR</h1>
+        <p class="reveal">UI/UX Designer & Graphic Designer</p>
+        <div class="reveal">
+            <a href="mailto:pavanadarapu@gmail.com" class="btn btn-primary">Start a Project</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title reveal">About</h2>
+        <p class="reveal" style="font-size: 1.3rem; max-width: 850px; color: var(--text-secondary);">
+            I’m a CSE student at Raghu Engineering College with a deep passion for digital craftsmanship. I bridge the gap between complex engineering logic and intuitive UI/UX design, specializing in high-fidelity Figma prototypes and Photoshop visual content.
+        </p>
+        <div class="skills-container reveal">
+            <span class="skill-pill">Figma</span>
+            <span class="skill-pill">Adobe Photoshop</span>
+            <span class="skill-pill">UI/UX Design</span>
+            <span class="skill-pill">Graphic Design</span>
+            <span class="skill-pill">Visual Identity</span>
+            <span class="skill-pill">Data Science</span>
+            <span class="skill-pill">Wireframing</span>
+            <span class="skill-pill">Prototyping</span>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title reveal">Experience</h2>
+        <div class="grid">
+            <div class="card reveal">
+                <span class="tag">Leadership</span>
+                <h3>Media Cell Head</h3>
+                <span class="item-meta">College Fest Identity</span>
+                <p style="color: var(--text-secondary);">Led the visual direction for major college events, receiving high praise from the college Principal and staff.</p>
+                <ul style="list-style: none; margin-top: 1rem; color: var(--text-secondary); font-size: 0.95rem;">
+                    <li>• Designed official wristbands for 10,000+ attendees.</li>
+                    <li>• Directed all digital and print promotional posters.</li>
+                    <li>• Managed the media branding strategy for the entire fest.</li>
+                </ul>
+            </div>
+            <div class="card reveal">
+                <span class="tag">Design</span>
+                <h3>Freelance Designer</h3>
+                <span class="item-meta">Digital Interfaces</span>
+                <p style="color: var(--text-secondary);">Focusing on creating seamless user journeys and aesthetically pleasing interfaces for diverse mobile applications.</p>
+                <ul style="list-style: none; margin-top: 1rem; color: var(--text-secondary); font-size: 0.95rem;">
+                    <li>• Developed high-fidelity mockups for e-commerce and real estate.</li>
+                    <li>• Created visual assets for social media and event branding.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title reveal">Featured Projects</h2>
+        <div class="grid" id="github-projects">
+            <div class="card reveal">
+                <span class="tag">UI/UX</span>
+                <h3>Library App</h3>
+                <p style="color: var(--text-secondary);">A modern library resource management system designed in Figma with a focus on ease of navigation.</p>
+            </div>
+            <div class="card reveal">
+                <span class="tag">UI/UX</span>
+                <h3>Shopping App</h3>
+                <p style="color: var(--text-secondary);">An "All-in-One" retail experience focusing on minimalist aesthetics and quick checkout flows.</p>
+            </div>
+            <div class="card reveal">
+                <span class="tag">Visual</span>
+                <h3>Cinematic Posters</h3>
+                <p style="color: var(--text-secondary);">A collection of high-end posters created in Photoshop, exploring advanced lighting and composition.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2 class="section-title reveal">Education</h2>
+        <div class="grid">
+            <div class="card reveal">
+                <span class="tag">B.Tech</span>
+                <h3>Computer Science Engineering</h3>
+                <span class="item-meta">Raghu Engineering College</span>
+                <span class="item-duration">Specialization: Data Science | April 2026</span>
+                <p style="color: var(--text-secondary);">Current CGPA: 7.1</p>
+            </div>
+            <div class="card reveal">
+                <span class="tag">Diploma</span>
+                <h3>Electronics & Communication</h3>
+                <span class="item-meta">Chaitanya Engineering College</span>
+                <span class="item-duration">Completed: May 2023</span>
+                <p style="color: var(--text-secondary);">Percentage: 75%</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="text-align: center;">
+        <h2 class="section-title reveal">Get In Touch</h2>
+        <div class="reveal">
+            <p style="margin-bottom: 3rem; color: var(--text-secondary); font-size: 1.2rem;">Based in Visakhapatnam, Andhra Pradesh.</p>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <a href="mailto:pavanadarapu@gmail.com" class="btn btn-primary">pavanadarapu@gmail.com</a>
+                <a href="https://www.linkedin.com/in/pavan-kumar-aadarapu-6a0ba2294" target="_blank" class="btn" style="border: 1px solid var(--border); color: var(--text);">LinkedIn</a>
+                <a href="https://github.com/Pavan1314" target="_blank" class="btn" style="border: 1px solid var(--border); color: var(--text);">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 PAVAN KUMAR | Designed for Impact.</p>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const current = body.getAttribute('data-theme');
+            body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // GitHub Repo Fetching
+        async function fetchRepos() {
+            try {
+                const response = await fetch('https://api.github.com/users/Pavan1314/repos?sort=updated');
+                const repos = await response.json();
+                const container = document.getElementById('github-projects');
+                
+                repos.slice(0, 3).forEach(repo => {
+                    const card = document.createElement('div');
+                    card.className = 'card reveal';
+                    card.innerHTML = `
+                        <span class="tag">Dev</span>
+                        <h3>${repo.name.replace(/-/g, ' ')}</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">${repo.description || 'Source code for technical projects and experiments.'}</p>
+                        <a href="${repo.html_url}" target="_blank" style="color: var(--primary); text-decoration: none; font-size: 0.85rem; font-weight: 700;">View Repository →</a>
+                    `;
+                    container.appendChild(card);
+                    observer.observe(card);
+                });
+            } catch (e) {
+                console.warn("GitHub fetch limit reached or error occurred.");
+            }
+        }
+
+        fetchRepos();
+    </script>
+</body>
+</html>
