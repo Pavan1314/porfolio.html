@@ -109,7 +109,13 @@
         .btn-primary:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(0,113,227,0.3); }
 
         /* Content Sections */
-        .section-title { font-size: 2.8rem; margin-bottom: 3.5rem; letter-spacing: -1.5px; }
+        .section-title { font-size: 2.8rem; 
+           
+            margin-bottom: 0.5rem; 
+            /*letter-spacing: -1.5px;*/
+            text-align: center;
+           /*text-decoration: underline;*/
+         }
 
         .grid {
             display: grid;
@@ -149,7 +155,14 @@
             font-size: 0.95rem;
             font-weight: 500;
         }
-
+         
+        .skills-wrapper {
+             display: flex;
+              flex-wrap: wrap;
+             justify-content: center; /* 🔥 THIS centers your content */
+              gap: 12px;
+              margin-top: 10px;
+       }
         /* Timeline-style for Education/Work */
         .item-meta { color: var(--primary); font-weight: 600; margin-bottom: 0.5rem; display: block; }
         .item-duration { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; display: block; }
@@ -236,24 +249,36 @@
     </section>
 
     <section id="about">
-        <h2 class="section-title reveal">About</h2>
-        <p class="reveal" style="font-size: 1.3rem; max-width: 850px; color: var(--text-secondary);">
+        <h3 class="section-title reveal" style="text-align: center; width: 100%;">About</h3>
+        <p class="reveal" style="
+        font-size: 1rem;
+        max-width: 850px;
+        color: var(--text-secondary);
+        text-align: center;
+        margin: 0 auto;">
             I’m a CSE student at Raghu Engineering College with a deep passion for digital craftsmanship. I bridge the gap between complex engineering logic and intuitive UI/UX design, specializing in high-fidelity Figma prototypes and Photoshop visual content.
         </p>
+
+        <br></br>
+
         <div class="skills-container reveal">
-            <span class="skill-pill">Figma</span>
-            <span class="skill-pill">Adobe Photoshop</span>
-            <span class="skill-pill">UI/UX Design</span>
-            <span class="skill-pill">Graphic Design</span>
-            <span class="skill-pill">Visual Identity</span>
-            <span class="skill-pill">Data Science</span>
-            <span class="skill-pill">Wireframing</span>
-            <span class="skill-pill">Prototyping</span>
+            <h2 class="section-title reveal" style="text-align: center; width: 100%;">Frequently Using Tools</h2>
+        
+            <div class="skills-wrapper">
+                <span class="skill-pill">Figma</span>
+                <span class="skill-pill">Adobe Photoshop</span>
+                <span class="skill-pill">Canva</span>
+                <span class="skill-pill">UI/UX Design</span>
+                <span class="skill-pill">Graphic Design</span>
+                <span class="skill-pill">Visual Identity</span>
+                <span class="skill-pill">Wireframing</span>
+                <span class="skill-pill">Prototyping</span>
+            </div>
         </div>
     </section>
 
     <section id="experience">
-        <h2 class="section-title reveal">Experience</h2>
+        <h2 class="section-title reveal" style="text-align: center; width: 100%;">Experience</h2>
         <div class="grid">
             <div class="card reveal">
                 <span class="tag">Leadership</span>
@@ -285,7 +310,7 @@
             <div class="card reveal">
                 <span class="tag">UI/UX</span>
                 <h3>Library App</h3>
-                <p style="color: var(--text-secondary);">A modern library resource management system designed in Figma with a focus on ease of navigation.</p>
+                <p  style="color: var(--text-secondary);">A modern library resource management system designed in Figma with a focus on ease of navigation.</p>
             </div>
             <div class="card reveal">
                 <span class="tag">UI/UX</span>
@@ -301,10 +326,10 @@
     </section>
 
     <section id="mywork">
-        <h2 class="section-title reveal">My Work</h2>
+        <h2 class="section-title reveal" style="text-align: center;" >My Work</h2>
     
         <!-- ===== COLLEGE FEST ===== -->
-        <h2 style="text-align: left;"><b>College Fest Work</b></h2><br>
+        <p style="text-align: center; padding-bottom: 30px;" class="section reveal">Designed promotional materials for college fest including event posters, banners, and branding assets focused on engagement and visibility.</p><br>
     
         <div class="work-grid">
     
@@ -326,7 +351,7 @@
         </div>
     
         <!-- ===== CINEMATIC POSTERS ===== -->
-        <h2 style="text-align: left; margin-top: 60px;"><b>Cinematic Posters</b></h2><br>
+        <h2 style="text-align:center; margin-top: 60px;"><b>Cinematic Posters</b></h2><p style="text-align: center; padding-bottom: 30px;">Created high-quality cinematic posters focusing on lighting, composition, and storytelling using Photoshop.</p><br>
     
         <div class="work-grid">
     
